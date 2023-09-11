@@ -59,7 +59,7 @@ class DataFrameImputer(TransformerMixin):
 
 def prepare_law():
 
-	filePath = 'datasets/A,Y,X/law_dataset/'
+	filePath = './datasets/A,Y,X/law_dataset/'
 
 	dataA = pd.read_csv(filePath + 'law_A.csv',sep='\t',index_col = 0,header=None)#,usecols=range(1,2))
 	dataY = pd.read_csv(filePath + 'law_Y.csv',sep='\t',index_col = 0,header=None)#,usecols=range(0,2))
@@ -80,12 +80,16 @@ def prepare_compas():
 	return dataA.iloc[:,0],dataY.iloc[:,0],dataX,perm       
 
 def prepare_IBM_adult():
-    filePath = 'datasets/A,Y,X/IBM_adult/'
+    filePath = 'datasets/A,Y,X/IBM_Adult/'
 
-    dataA = pd.read_csv(filePath + 'IBM_adult_A.csv',sep='\t',index_col = 0,header=None)#,usecols=range(1,2))
-    dataY = pd.read_csv(filePath + 'IBM_adult_Y.csv',sep='\t',index_col = 0,header=None)#,usecols=range(0,2))
-    dataX = pd.read_csv(filePath + 'IBM_adult_X.csv',sep='\t',index_col = 0)
-    perm = np.genfromtxt(filePath + 'adult_perm.csv', delimiter=',')
+    dataA = pd.read_csv(filePath + 'RAI Race Recal_A.csv')#,usecols=range(1,2))
+    dataY = pd.read_csv(filePath + 'RAI Race Recal_Y.csv')#,usecols=range(0,2))
+    dataX = pd.read_csv(filePath + 'RAI Race Recal_X.csv')
+    perm = np.genfromtxt(filePath + 'RAI Race Recal_perm.csv',delimiter=',')
+    print(dataA.shape)
+    print(dataY.shape)
+    print(dataX.shape)
+    print(perm.shape)
     return dataA.iloc[:,0],dataY.iloc[:,0],dataX,perm 
 	
 

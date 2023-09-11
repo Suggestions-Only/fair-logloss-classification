@@ -44,6 +44,7 @@ if __name__ == '__main__':
     outfile_tr = open(filename_tr,"w")
     outfile_ts = open(filename_ts,"w")
 
+    coef = []
     for r in range(20):
         order = perm[r,:]
         tr_sz = int(np.floor(.7 * dataX.shape[0]))
@@ -82,8 +83,11 @@ if __name__ == '__main__':
         print("Test  - predict_err : {:.3f} \t expected_err : {:.3f} \t fair_violation : {:.3f} ".format(err_ts, exp_zo_ts,violation_ts))
         print("")
 
+        coef.append(h.theta)
+
         outfile_ts.write("{:.4f},{:.4f},{:.4f}\n".format(exp_zo_ts,err_ts, violation_ts))
         outfile_tr.write("{:.4f},{:.4f},{:.4f}\n".format(exp_zo_tr,err_tr, violation_tr))
-        
+
+    pd.DataFrame(coef).to_csv('./coeff.csv')
     outfile_tr.close()
     outfile_ts.close()
